@@ -1,4 +1,4 @@
-5.6.0
+7.0.0
 
 `configure' configures this package to adapt to many kinds of systems.
 
@@ -69,33 +69,15 @@ Optional Features and Packages:
   --disable-rpath         Disable passing additional runtime library
                           search paths
   --enable-re2c-cgoto     Enable -g flag to re2c to use computed goto gcc extension
+  --disable-gcc-global-regs
+                          whether to enable GCC global register variables
 
 SAPI modules:
 
-  --with-aolserver=DIR    Specify path to the installed AOLserver
-  --with-apxs=FILE        Build shared Apache 1.x module. FILE is the optional
-                          pathname to the Apache apxs tool apxs
-  --with-apache=DIR       Build Apache 1.x module. DIR is the top-level Apache
-                          build directory /usr/local/apache
-  --enable-mod-charset    APACHE: Enable transfer tables for mod_charset (Rus Apache)
-  --with-apxs2filter=FILE
-                          EXPERIMENTAL: Build shared Apache 2.0 Filter module. FILE is the optional
-                          pathname to the Apache apxs tool apxs
   --with-apxs2=FILE       Build shared Apache 2.0 Handler module. FILE is the optional
                           pathname to the Apache apxs tool apxs
-  --with-apache-hooks=FILE
-                          EXPERIMENTAL: Build shared Apache 1.x module. FILE is the optional
-                          pathname to the Apache apxs tool apxs
-  --with-apache-hooks-static=DIR
-                          EXPERIMENTAL: Build Apache 1.x module. DIR is the top-level Apache
-                          build directory /usr/local/apache
-  --enable-mod-charset    APACHE (hooks): Enable transfer tables for mod_charset (Rus Apache)
-  --with-caudium=DIR      Build PHP as a Pike module for use with Caudium.
-                          DIR is the Caudium server dir /usr/local/caudium/server
   --disable-cli           Disable building CLI version of PHP
                           (this forces --without-pear)
-  --with-continuity=DIR   Build PHP as Continuity Server module.
-                          DIR is path to the installed Continuity Server root
   --enable-embed=TYPE     EXPERIMENTAL: Enable building of embedded SAPI library
                           TYPE is either 'shared' or 'static'. TYPE=shared
   --enable-fpm            Enable building of the fpm SAPI executable
@@ -103,20 +85,11 @@ SAPI modules:
   --with-fpm-group=GRP    Set the group for php-fpm to run as. For a system user, this
                           should usually be set to match the fpm username (default: nobody)
   --with-fpm-systemd      Activate systemd integration
-  --with-isapi=DIR        Build PHP as an ISAPI module for use with Zeus
+  --with-fpm-acl          Use POSIX Access Control Lists
   --with-litespeed        Build PHP as litespeed module
-  --with-milter=DIR       Build PHP as Milter application
-  --with-nsapi=DIR        Build PHP as NSAPI module for Netscape/iPlanet/Sun Webserver
-  --enable-phpdbg         Build phpdbg
-  --enable-phpdbg-debug   Build phpdbg in debug mode
-  --with-phttpd=DIR       Build PHP as phttpd module
-  --with-pi3web=DIR       Build PHP as Pi3Web module
-  --with-roxen=DIR        Build PHP as a Pike module. DIR is the base Roxen
-                          directory, normally /usr/local/roxen/server
-  --enable-roxen-zts      ROXEN: Build the Roxen module using Zend Thread Safety
-  --with-thttpd=SRCDIR    Build PHP as thttpd module
-  --with-tux=MODULEDIR    Build PHP as a TUX module (Linux only)
-  --with-webjames=SRCDIR  Build PHP as a WebJames module (RISC OS only)
+  --enable-phpdbg            Build phpdbg
+  --enable-phpdbg-webhelper  Build phpdbg web SAPI support
+  --enable-phpdbg-debug      Build phpdbg in debug mode
   --disable-cgi           Disable building CGI version of PHP
 
 General settings:
@@ -151,12 +124,11 @@ Extensions:
 
   --disable-all           Disable all extensions which are enabled by default
 
-  --with-regex=TYPE       Regex library type: system, php. TYPE=php
-                          WARNING: Do NOT use unless you know what you are doing!
   --disable-libxml        Disable LIBXML support
   --with-libxml-dir=DIR   LIBXML: libxml2 install prefix
-  --with-openssl=DIR      Include OpenSSL support (requires OpenSSL >= 0.9.6)
+  --with-openssl=DIR      Include OpenSSL support (requires OpenSSL >= 0.9.8)
   --with-kerberos=DIR     OPENSSL: Include Kerberos support
+  --with-system-ciphers   OPENSSL: Use system default cipher list instead of hardcoded value
   --with-pcre-regex=DIR   Include Perl Compatible Regular Expressions support.
                           DIR is the PCRE install prefix BUNDLED
   --without-sqlite3=DIR   Do not include SQLite3 support. DIR is the prefix to
@@ -194,13 +166,12 @@ Extensions:
   --with-openssl-dir=DIR  FTP: openssl install prefix
   --with-gd=DIR           Include GD support.  DIR is the GD library base
                           install directory BUNDLED
-  --with-vpx-dir=DIR      GD: Set the path to libvpx install prefix
+  --with-webp-dir=DIR      GD: Set the path to libwebp install prefix
   --with-jpeg-dir=DIR     GD: Set the path to libjpeg install prefix
   --with-png-dir=DIR      GD: Set the path to libpng install prefix
   --with-zlib-dir=DIR     GD: Set the path to libz install prefix
   --with-xpm-dir=DIR      GD: Set the path to libXpm install prefix
   --with-freetype-dir=DIR GD: Set the path to FreeType 2 install prefix
-  --with-t1lib=DIR        GD: Include T1lib support. T1lib version >= 5.0.0 required
   --enable-gd-native-ttf  GD: Enable TrueType string function
   --enable-gd-jis-conv    GD: Enable JIS-mapped Japanese font support
   --with-gettext=DIR      Include GNU gettext support
@@ -211,8 +182,8 @@ Extensions:
   --with-imap=DIR         Include IMAP support. DIR is the c-client install prefix
   --with-kerberos=DIR     IMAP: Include Kerberos support. DIR is the Kerberos install prefix
   --with-imap-ssl=DIR     IMAP: Include SSL support. DIR is the OpenSSL install prefix
-  --with-interbase=DIR    Include InterBase support.  DIR is the InterBase base
-                          install directory /usr/interbase
+  --with-interbase=DIR    Include Firebird support.  DIR is the Firebird base
+                          install directory /opt/firebird
   --enable-intl           Enable internationalization support
   --with-icu-dir=DIR      Specify where ICU libraries and headers can be found
   --disable-json          Disable JavaScript Object Serialization support
@@ -227,24 +198,20 @@ Extensions:
   --with-onig=DIR         MBSTRING: Use external oniguruma. DIR is the oniguruma install prefix.
                           If DIR is not set, the bundled oniguruma will be used
   --with-mcrypt=DIR       Include mcrypt support
-  --with-mssql=DIR        Include MSSQL-DB support.  DIR is the FreeTDS home
-                          directory /usr/local/freetds
-  --with-mysql=DIR        Include MySQL support.  DIR is the MySQL base
-                          directory, if no DIR is passed or the value is
-                          mysqlnd the MySQL native driver will be used
-  --with-mysql-sock=SOCKPATH
-                          MySQL/MySQLi/PDO_MYSQL: Location of the MySQL unix socket pointer.
-                          If unspecified, the default locations are searched
-  --with-zlib-dir=DIR     MySQL: Set the path to libz install prefix
   --with-mysqli=FILE      Include MySQLi support.  FILE is the path
                           to mysql_config.  If no value or mysqlnd is passed
                           as FILE, the MySQL native driver will be used
   --enable-embedded-mysqli
                           MYSQLi: Enable embedded support
                           Note: Does not work with MySQL native driver!
+  --with-mysql-sock=SOCKPATH
+                          MySQLi/PDO_MYSQL: Location of the MySQL unix socket pointer.
+                          If unspecified, the default locations are searched
   --with-oci8=DIR         Include Oracle Database OCI8 support. DIR defaults to $ORACLE_HOME.
                           Use --with-oci8=instantclient,/path/to/instant/client/lib
                           to use an Oracle Instant Client installation
+  --with-odbcver=HEX      Force support for the passed ODBC version. A hex number is expected, default 0x0300.
+                             Use the special value of 0 to prevent an explicit ODBCVER to be defined.
   --with-adabas=DIR       Include Adabas D support /usr/local
   --with-sapdb=DIR        Include SAP DB support /usr/local
   --with-solid=DIR        Include Solid support /usr/local/solid
@@ -264,11 +231,14 @@ Extensions:
                             CPPFLAGS=\"-DODBC_QNX -DSQLANY_BUG\"
                             LDFLAGS=-lunix
                             CUSTOM_ODBC_LIBS=\"-ldblib -lodbc\"
-  --with-iodbc=DIR        Include iODBC support
+  --with-iodbc=DIR        Include iODBC support /usr/local
   --with-esoob=DIR        Include Easysoft OOB support /usr/local/easysoft/oob/client
   --with-unixODBC=DIR     Include unixODBC support /usr/local
   --with-dbmaker=DIR      Include DBMaker support
-  --enable-opcache        Enable Zend OPcache support
+  --disable-opcache       Disable Zend OPcache support
+  --disable-opcache-file  Disable file based caching
+  --disable-huge-code-pages
+                          Disable copying PHP CODE pages into HUGE PAGES
   --enable-pcntl          Enable pcntl support (CLI/CGI only)
   --disable-pdo           Disable PHP Data Objects support
   --with-pdo-dblib=DIR    PDO: DBLIB-DB support.  DIR is the FreeTDS home directory
@@ -326,8 +296,6 @@ Extensions:
   --enable-soap           Enable SOAP support
   --with-libxml-dir=DIR   SOAP: libxml2 install prefix
   --enable-sockets        Enable sockets support
-  --with-sybase-ct=DIR    Include Sybase-CT support.  DIR is the Sybase home
-                          directory /home/sybase
   --enable-sysvmsg        Enable sysvmsg support
   --enable-sysvsem        Enable System V semaphore support
   --enable-sysvshm        Enable the System V shared memory support
@@ -366,8 +334,6 @@ PEAR:
 
 Zend:
 
-  --with-zend-vm=TYPE     Set virtual machine dispatch method. Type is
-                          one of "CALL", "SWITCH" or "GOTO" TYPE=CALL
   --enable-maintainer-zts Enable thread safety - for code maintainers only!!
   --disable-inline-optimization
                           If building zend_execute.lo fails, try this switch
@@ -401,8 +367,9 @@ Some influential environment variables:
   CPPFLAGS    (Objective) C/C++ preprocessor flags, e.g. -I<include dir> if
               you have headers in a nonstandard directory <include dir>
   CPP         C preprocessor
-  YACC        The `Yet Another C Compiler' implementation to use. Defaults to
-              the first program found out of: `bison -y', `byacc', `yacc'.
+  YACC        The `Yet Another Compiler Compiler' implementation to use.
+              Defaults to the first program found out of: `bison -y', `byacc',
+              `yacc'.
   YFLAGS      The list of arguments that will be passed by default to $YACC.
               This script will default YFLAGS to the empty string to avoid a
               default value of `-d' given by some make applications.
