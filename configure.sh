@@ -1,4 +1,4 @@
-7.1.0
+PHP-7.2.0
 
 `configure' configures this package to adapt to many kinds of systems.
 
@@ -131,7 +131,9 @@ Extensions:
   --with-system-ciphers   OPENSSL: Use system default cipher list instead of hardcoded value
   --with-pcre-regex=DIR   Include Perl Compatible Regular Expressions support.
                           DIR is the PCRE install prefix BUNDLED
-  --with-pcre-jit         Enable PCRE JIT functionality
+  --with-pcre-jit         Enable PCRE JIT functionality (BUNDLED only)
+  --with-pcre-valgrind=DIR
+                          Enable PCRE valgrind support. Developers only!
   --without-sqlite3=DIR   Do not include SQLite3 support. DIR is the prefix to
                           SQLite3 installation directory.
   --with-zlib=DIR         Include ZLIB support (requires zlib >= 1.0.9)
@@ -152,6 +154,7 @@ Extensions:
   --with-db1=DIR          DBA: Oracle Berkeley DB 1.x support/emulation
   --with-dbm=DIR          DBA: DBM support
   --with-tcadb=DIR        DBA: Tokyo Cabinet abstract DB support
+  --with-lmdb=DIR        DBA: Lightning memory-mapped database support
   --without-cdb=DIR       DBA: CDB support (bundled)
   --disable-inifile       DBA: INI support (bundled)
   --disable-flatfile      DBA: FlatFile support (bundled)
@@ -173,7 +176,6 @@ Extensions:
   --with-zlib-dir=DIR     GD: Set the path to libz install prefix
   --with-xpm-dir=DIR      GD: Set the path to libXpm install prefix
   --with-freetype-dir=DIR GD: Set the path to FreeType 2 install prefix
-  --enable-gd-native-ttf  GD: Enable TrueType string function
   --enable-gd-jis-conv    GD: Enable JIS-mapped Japanese font support
   --with-gettext=DIR      Include GNU gettext support
   --with-gmp=DIR          Include GNU MP support
@@ -198,7 +200,6 @@ Extensions:
                           install directory BUNDLED
   --with-onig=DIR         MBSTRING: Use external oniguruma. DIR is the oniguruma install prefix.
                           If DIR is not set, the bundled oniguruma will be used
-  --with-mcrypt=DIR       Include mcrypt support
   --with-mysqli=FILE      Include MySQLi support.  FILE is the path
                           to mysql_config.  If no value or mysqlnd is passed
                           as FILE, the MySQL native driver will be used
@@ -249,13 +250,9 @@ Extensions:
                           If no value or mysqlnd is passed as DIR, the
                           MySQL native driver will be used
   --with-zlib-dir=DIR     PDO_MySQL: Set the path to libz install prefix
-  --with-pdo-oci=DIR      PDO: Oracle OCI support. DIR defaults to \$ORACLE_HOME.
-                          Use --with-pdo-oci=instantclient,prefix,version
-                          for an Oracle Instant Client SDK.
-                          For example on Linux with 11.2 RPMs use:
-                            --with-pdo-oci=instantclient,/usr,11.2
-                          With 10.2 RPMs use:
-                            --with-pdo-oci=instantclient,/usr,10.2.0.4
+  --with-pdo-oci=DIR      PDO: Oracle OCI support. DIR defaults to $ORACLE_HOME.
+                          Use --with-pdo-oci=instantclient,/path/to/instant/client/lib
+                          for an Oracle Instant Client installation.
   --with-pdo-odbc=flavour,dir
                           PDO: Support for 'flavour' ODBC driver.
 			  include and lib dirs are looked for under 'dir'.
@@ -297,6 +294,8 @@ Extensions:
   --enable-soap           Enable SOAP support
   --with-libxml-dir=DIR   SOAP: libxml2 install prefix
   --enable-sockets        Enable sockets support
+  --with-sodium=DIR     Include sodium support
+  --with-password-argon2=DIR           Include Argon2 support in password_*. DIR is the Argon2 shared library path]
   --enable-sysvmsg        Enable sysvmsg support
   --enable-sysvsem        Enable System V semaphore support
   --enable-sysvshm        Enable the System V shared memory support
@@ -318,6 +317,7 @@ Extensions:
   --with-libxml-dir=DIR   XMLWriter: libxml2 install prefix
   --with-xsl=DIR          Include XSL support.  DIR is the libxslt base
                           install directory (libxslt >= 1.1.0 required)
+  --enable-zend-test           Enable zend-test extension
   --enable-zip            Include Zip read/write support
   --with-zlib-dir=DIR     ZIP: Set the path to libz install prefix
   --with-pcre-dir         ZIP: pcre install prefix
