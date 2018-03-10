@@ -1,4 +1,4 @@
-7.0.0
+7.1.0
 
 `configure' configures this package to adapt to many kinds of systems.
 
@@ -126,11 +126,12 @@ Extensions:
 
   --disable-libxml        Disable LIBXML support
   --with-libxml-dir=DIR   LIBXML: libxml2 install prefix
-  --with-openssl=DIR      Include OpenSSL support (requires OpenSSL >= 0.9.8)
+  --with-openssl=DIR      Include OpenSSL support (requires OpenSSL >= 1.0.1)
   --with-kerberos=DIR     OPENSSL: Include Kerberos support
   --with-system-ciphers   OPENSSL: Use system default cipher list instead of hardcoded value
   --with-pcre-regex=DIR   Include Perl Compatible Regular Expressions support.
                           DIR is the PCRE install prefix BUNDLED
+  --with-pcre-jit         Enable PCRE JIT functionality
   --without-sqlite3=DIR   Do not include SQLite3 support. DIR is the prefix to
                           SQLite3 installation directory.
   --with-zlib=DIR         Include ZLIB support (requires zlib >= 1.0.9)
@@ -210,7 +211,7 @@ Extensions:
   --with-oci8=DIR         Include Oracle Database OCI8 support. DIR defaults to $ORACLE_HOME.
                           Use --with-oci8=instantclient,/path/to/instant/client/lib
                           to use an Oracle Instant Client installation
-  --with-odbcver=HEX      Force support for the passed ODBC version. A hex number is expected, default 0x0300.
+  --with-odbcver=HEX      Force support for the passed ODBC version. A hex number is expected, default 0x0350.
                              Use the special value of 0 to prevent an explicit ODBCVER to be defined.
   --with-adabas=DIR       Include Adabas D support /usr/local
   --with-sapdb=DIR        Include SAP DB support /usr/local
@@ -337,7 +338,7 @@ Zend:
   --enable-maintainer-zts Enable thread safety - for code maintainers only!!
   --disable-inline-optimization
                           If building zend_execute.lo fails, try this switch
-  --enable-zend-signals   Use zend signal handling
+  --disable-zend-signals  whether to enable zend signal handling
 
 TSRM:
 
