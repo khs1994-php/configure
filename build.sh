@@ -1,20 +1,26 @@
 #！/bin/bash
 
+export PHP_VERSION=7.0.0
+
 set -e
 
 # 1. download
 
-if ! [ -d /usr/local/src/php-5.6.0 ];then
+if ! [ -d /usr/local/src/php-${PHP_VERSION} ];then
+
+echo -e "Download php src ...\n\n"
 
 cd /usr/local/src
 
-wget http://cn2.php.net/distributions/php-5.6.0.tar.gz
+sudo chmod -R 777 /usr/local/src
 
-tar -zxvf php-5.6.0.tar.gz
+wget http://cn2.php.net/distributions/php-${PHP_VERSION}.tar.gz
+
+tar -zxvf php-${PHP_VERSION}.tar.gz > /dev/null 2>&1
 
 fi
 
-cd /usr/local/src/php-5.6.0
+cd /usr/local/src/php-${PHP_VERSION}
 
 # 2. install packages
 
@@ -45,7 +51,7 @@ sudo apt install -y autoconf \
 debMultiarch="$(dpkg-architecture --query DEB_BUILD_MULTIARCH)"
 # https://bugs.php.net/bug.php?id=74125
 if [ ! -d /usr/include/curl ]; then
-    ln -sT "/usr/include/$debMultiarch/curl" /usr/local/include/curl
+    sudo ln -sT "/usr/include/$debMultiarch/curl" /usr/local/include/curl
 fi
 
 # 4. configure
@@ -81,7 +87,6 @@ fi
     --enable-gd-jis-conv \
     --enable-mbregex \
     --enable-mbstring \
-    --enable-opcache \
     --enable-pcntl \
     --enable-shmop \
     --enable-soap \
@@ -103,18 +108,29 @@ sudo make install
 
 # 7. install extension
 
-export PHP_5_6_X=/usr/local/php56
+export PHP_ROOT=/usr/local/php70
 
-${PHP_5_6_X}/bin/php -v
-${PHP_5_6_X}/bin/pear config-set php_ini /usr/local/php56/etc/php.ini
-${PHP_5_6_X}/bin/pecl update-channels
-${PHP_5_6_X}/bin/pecl config-show
-${PHP_5_6_X}/bin/pecl install redis \
-                              memcached-2.2.0 \
-                              xdebug-2.5.5 \
+${PHP_ROOT}/bin/php -v
+
+sudo cp /usr/local/src/php-${PHP_VERSION}/php.ini-development ${PHP_ROOT}/etc/php.ini
+
+sudo cp ${PHP_ROOT}/etc/php-fpm.d/www.conf.default ${PHP_ROOT}/etc/php-fpm.d/www.conf
+
+sudo ${PHP_ROOT}/bin/pear config-set php_ini ${PHP_ROOT}/etc/php.ini
+sudo ${PHP_ROOT}/bin/pecl config-set php_ini ${PHP_ROOT}/etc/php.ini
+
+sudo ${PHP_ROOT}/bin/pecl update-channels
+
+sudo ${PHP_ROOT}/bin/perl config-show
+sudo ${PHP_ROOT}/bin/pecl config-show
+
+sudo ${PHP_ROOT}/bin/pecl install igbinary \
+                              redis \
+                              memcached \
+                              xdebug \
                               mongodb \
-                              yaml \
-                              igbinary
+                              yaml
+
 # 8. enable extension
 
-# echo "zend_extension=opcache" > /usr/local/php/etc/conf.d/extension.ini
+echo "zend_extension=opcache" > ${PHP_ROOT}/etc/conf.d/extension-opcache.ini
