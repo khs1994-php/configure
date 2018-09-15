@@ -1,4 +1,4 @@
-PHP-7.2.0
+PHP-7.3.0RC1
 
 `configure' configures this package to adapt to many kinds of systems.
 
@@ -40,6 +40,7 @@ Fine tuning of the installation directories:
   --sysconfdir=DIR        read-only single-machine data [PREFIX/etc]
   --sharedstatedir=DIR    modifiable architecture-independent data [PREFIX/com]
   --localstatedir=DIR     modifiable single-machine data [PREFIX/var]
+  --runstatedir=DIR       modifiable per-process data [LOCALSTATEDIR/run]
   --libdir=DIR            object code libraries [EPREFIX/lib]
   --includedir=DIR        C header files [PREFIX/include]
   --oldincludedir=DIR     C header files for non-gcc [/usr/include]
@@ -87,10 +88,12 @@ SAPI modules:
   --with-fpm-systemd      Activate systemd integration
   --with-fpm-acl          Use POSIX Access Control Lists
   --with-litespeed        Build PHP as litespeed module
-  --enable-phpdbg            Build phpdbg
-  --enable-phpdbg-webhelper  Build phpdbg web SAPI support
-  --enable-phpdbg-debug      Build phpdbg in debug mode
+  --enable-phpdbg         Build phpdbg
+  --enable-phpdbg-webhelper
+                          Build phpdbg web SAPI support
+  --enable-phpdbg-debug   Build phpdbg in debug mode
   --disable-cgi           Disable building CGI version of PHP
+  --with-valgrind=DIR     Enable valgrind support
 
 General settings:
 
@@ -136,7 +139,7 @@ Extensions:
                           Enable PCRE valgrind support. Developers only!
   --without-sqlite3=DIR   Do not include SQLite3 support. DIR is the prefix to
                           SQLite3 installation directory.
-  --with-zlib=DIR         Include ZLIB support (requires zlib >= 1.0.9)
+  --with-zlib=DIR         Include ZLIB support (requires zlib >= 1.2.0.4)
   --with-zlib-dir=<DIR>   Define the location of zlib install directory
   --enable-bcmath         Enable bc style precision math functions
   --with-bz2=DIR          Include BZip2 support
@@ -154,7 +157,7 @@ Extensions:
   --with-db1=DIR          DBA: Oracle Berkeley DB 1.x support/emulation
   --with-dbm=DIR          DBA: DBM support
   --with-tcadb=DIR        DBA: Tokyo Cabinet abstract DB support
-  --with-lmdb=DIR        DBA: Lightning memory-mapped database support
+  --with-lmdb=DIR         DBA: Lightning memory-mapped database support
   --without-cdb=DIR       DBA: CDB support (bundled)
   --disable-inifile       DBA: INI support (bundled)
   --disable-flatfile      DBA: FlatFile support (bundled)
@@ -170,7 +173,7 @@ Extensions:
   --with-openssl-dir=DIR  FTP: openssl install prefix
   --with-gd=DIR           Include GD support.  DIR is the GD library base
                           install directory BUNDLED
-  --with-webp-dir=DIR      GD: Set the path to libwebp install prefix
+  --with-webp-dir=DIR     GD: Set the path to libwebp install prefix
   --with-jpeg-dir=DIR     GD: Set the path to libjpeg install prefix
   --with-png-dir=DIR      GD: Set the path to libpng install prefix
   --with-zlib-dir=DIR     GD: Set the path to libz install prefix
@@ -196,8 +199,6 @@ Extensions:
   --disable-mbregex       MBSTRING: Disable multibyte regex support
   --disable-mbregex-backtrack
                           MBSTRING: Disable multibyte regex backtrack check
-  --with-libmbfl=DIR      MBSTRING: Use external libmbfl.  DIR is the libmbfl base
-                          install directory BUNDLED
   --with-onig=DIR         MBSTRING: Use external oniguruma. DIR is the oniguruma install prefix.
                           If DIR is not set, the bundled oniguruma will be used
   --with-mysqli=FILE      Include MySQLi support.  FILE is the path
@@ -213,18 +214,15 @@ Extensions:
                           Use --with-oci8=instantclient,/path/to/instant/client/lib
                           to use an Oracle Instant Client installation
   --with-odbcver=HEX      Force support for the passed ODBC version. A hex number is expected, default 0x0350.
-                             Use the special value of 0 to prevent an explicit ODBCVER to be defined.
+                          Use the special value of 0 to prevent an explicit ODBCVER to be defined.
   --with-adabas=DIR       Include Adabas D support /usr/local
   --with-sapdb=DIR        Include SAP DB support /usr/local
   --with-solid=DIR        Include Solid support /usr/local/solid
   --with-ibm-db2=DIR      Include IBM DB2 support /home/db2inst1/sqllib
-  --with-ODBCRouter=DIR   Include ODBCRouter.com support /usr
   --with-empress=DIR      Include Empress support \$EMPRESSPATH
                           (Empress Version >= 8.60 required)
-  --with-empress-bcs=DIR
-                          Include Empress Local Access support \$EMPRESSPATH
+  --with-empress-bcs=DIR  Include Empress Local Access support \$EMPRESSPATH
                           (Empress Version >= 8.60 required)
-  --with-birdstep=DIR     Include Birdstep support /usr/local/birdstep
   --with-custom-odbc=DIR  Include user defined ODBC support. DIR is ODBC install base
                           directory /usr/local. Make sure to define CUSTOM_ODBC_LIBS and
                           have some odbc.h in your include dirs. f.e. you should define
@@ -264,7 +262,7 @@ Extensions:
 			    --with-pdo-odbc=unixODBC
 
 			  will check for unixODBC under /usr/local. You may attempt
-			  to use an otherwise unsupported driver using the \"generic\"
+			  to use an otherwise unsupported driver using the 'generic'
 			  flavour.  The syntax for generic ODBC support is:
 
 			    --with-pdo-odbc=generic,dir,libname,ldflags,cflags
@@ -294,8 +292,9 @@ Extensions:
   --enable-soap           Enable SOAP support
   --with-libxml-dir=DIR   SOAP: libxml2 install prefix
   --enable-sockets        Enable sockets support
-  --with-sodium=DIR     Include sodium support
-  --with-password-argon2=DIR           Include Argon2 support in password_*. DIR is the Argon2 shared library path]
+  --with-sodium=DIR       Include sodium support
+  --with-password-argon2=DIR
+                          Include Argon2 support in password_*. DIR is the Argon2 shared library path
   --enable-sysvmsg        Enable sysvmsg support
   --enable-sysvsem        Enable System V semaphore support
   --enable-sysvshm        Enable the System V shared memory support
@@ -317,7 +316,7 @@ Extensions:
   --with-libxml-dir=DIR   XMLWriter: libxml2 install prefix
   --with-xsl=DIR          Include XSL support.  DIR is the libxslt base
                           install directory (libxslt >= 1.1.0 required)
-  --enable-zend-test           Enable zend-test extension
+  --enable-zend-test      Enable zend-test extension
   --enable-zip            Include Zip read/write support
   --with-zlib-dir=DIR     ZIP: Set the path to libz install prefix
   --with-pcre-dir         ZIP: pcre install prefix
