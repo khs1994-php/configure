@@ -1,4 +1,4 @@
-PHP-7.3.0RC1
+PHP-7.3.0
 
 `configure' configures this package to adapt to many kinds of systems.
 
