@@ -16,11 +16,10 @@ jobs:
           repository: php/php-src
           ref: master
           fetch-depth: 2
-          path: /home/runner/work/configure/php-src
       - run: mkdir .git_tmp
       - run: echo -e "PHP-master\n" > .git_tmp/configure.sh
-      - run: cd ../php-src ; ./buildconf --force
-      - run: cd ../php-src ; ./configure --help >> ../configure/.git_tmp/configure.sh
+      - run: ./buildconf --force
+      - run: ./configure --help >> .git_tmp/configure.sh
       - name: sync
         if: github.event_name == 'push' || github.event_name == 'schedule'
         uses: docker://pcit/pages
