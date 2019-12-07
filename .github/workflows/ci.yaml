@@ -16,8 +16,9 @@ jobs:
           repository: php/php-src
           ref: master
           fetch-depth: 2
+          path: /home/runner/work/configure/php-src
       - run: mkdir .git_tmp
-      - run: echo "PHP-master" > .git_tmp/configure.sh
+      - run: echo -e "PHP-master\n" > .git_tmp/configure.sh
       - run: cd ../php-src ; ./buildconf --force
       - run: cd ../php-src ; ./configure --help >> ../configure/.git_tmp/configure.sh
       - name: sync
