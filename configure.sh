@@ -1,6 +1,6 @@
-PHP-7.4.0
+PHP-8.0.0
 
-`configure' configures PHP 7.4.0 to adapt to many kinds of systems.
+`configure' configures PHP 8.0.0 to adapt to many kinds of systems.
 
 Usage: ./configure [OPTION]... [VAR=VALUE]...
 
@@ -40,6 +40,7 @@ Fine tuning of the installation directories:
   --sysconfdir=DIR        read-only single-machine data [PREFIX/etc]
   --sharedstatedir=DIR    modifiable architecture-independent data [PREFIX/com]
   --localstatedir=DIR     modifiable single-machine data [PREFIX/var]
+  --runstatedir=DIR       modifiable per-process data [LOCALSTATEDIR/run]
   --libdir=DIR            object code libraries [EPREFIX/lib]
   --includedir=DIR        C header files [PREFIX/include]
   --oldincludedir=DIR     C header files for non-gcc [/usr/include]
@@ -95,6 +96,10 @@ SAPI modules:
                           username (default: nobody)
   --with-fpm-systemd      Activate systemd integration
   --with-fpm-acl          Use POSIX Access Control Lists
+  --with-fpm-apparmor     Support AppArmor confinement through libapparmor
+  --enable-fuzzer         Build PHP as clang fuzzing test module (for
+                          developers)
+  --enable-fuzzer-msan    Enable msan instead of asan/ubsan when fuzzing
   --enable-litespeed      Build PHP as litespeed module
   --enable-phpdbg         Build phpdbg
   --enable-phpdbg-webhelper
@@ -110,6 +115,8 @@ General settings:
 
   --enable-gcov           Enable GCOV code coverage - FOR DEVELOPERS ONLY!!
   --enable-debug          Compile with debugging symbols
+  --enable-debug-assertions
+                          Compile with debug assertions even in release mode
   --enable-rtld-now       Use dlopen with RTLD_NOW instead of RTLD_LAZY
   --with-layout=TYPE      Set how installed files will be laid out. Type can
                           be either PHP or GNU [PHP]
@@ -126,6 +133,8 @@ General settings:
   --enable-dtrace         Enable DTrace support
   --enable-fd-setsize     Set size of descriptor sets
   --enable-werror         Enable -Werror
+  --enable-memory-sanitizer
+                          Enable memory sanitizer (clang only)
 
 Extensions:
 
@@ -176,8 +185,8 @@ Extensions:
   --disable-fileinfo      Disable fileinfo support
   --disable-filter        Disable input filter support
   --enable-ftp            Enable FTP support
-  --with-openssl-dir[=DIR]
-                          FTP: openssl install prefix
+  --with-openssl-dir      FTP: Whether to enable FTP SSL support without
+                          ext/openssl
   --enable-gd             Include GD support
   --with-external-gd      Use external libgd
   --with-webp             GD: Enable WEBP support (only for bundled libgd)
@@ -194,10 +203,8 @@ Extensions:
   --with-imap[=DIR]       Include IMAP support. DIR is the c-client install
                           prefix
   --with-kerberos         IMAP: Include Kerberos support
-  --with-imap-ssl[=DIR]   IMAP: Include SSL support. DIR is the OpenSSL
-                          install prefix
+  --with-imap-ssl         IMAP: Include SSL support
   --enable-intl           Enable internationalization support
-  --disable-json          Disable JavaScript Object Serialization support
   --with-ldap[=DIR]       Include LDAP support
   --with-ldap-sasl        LDAP: Build with Cyrus SASL support
   --enable-mbstring       Enable multibyte string support
@@ -243,6 +250,7 @@ Extensions:
   --disable-opcache       Disable Zend OPcache support
   --disable-huge-code-pages
                           Disable copying PHP CODE pages into HUGE PAGES
+  --disable-opcache-jit   Disable JIT
   --enable-pcntl          Enable pcntl support (CLI/CGI only)
   --disable-pdo           Disable PHP Data Objects support
   --with-pdo-dblib[=DIR]  PDO: DBLIB-DB support. DIR is the FreeTDS home
@@ -287,8 +295,6 @@ Extensions:
   --enable-shmop          Enable shmop support
   --disable-simplexml     Disable SimpleXML support
   --with-snmp[=DIR]       Include SNMP support
-  --with-openssl-dir[=DIR]
-                          SNMP: openssl install prefix
   --enable-soap           Enable SOAP support
   --enable-sockets        Enable sockets support
   --with-sodium           Include sodium support
@@ -303,9 +309,6 @@ Extensions:
   --disable-xml           Disable XML support
   --with-expat            XML: use expat instead of libxml2
   --disable-xmlreader     Disable XMLReader support
-  --with-xmlrpc[=DIR]     Include XMLRPC-EPI support
-  --with-expat            XMLRPC-EPI: use expat instead of libxml2
-  --with-iconv-dir=DIR    XMLRPC-EPI: iconv dir for XMLRPC-EPI
   --disable-xmlwriter     Disable XMLWriter support
   --with-xsl              Build with XSL support
   --enable-zend-test      Enable zend-test extension
@@ -322,17 +325,11 @@ PEAR:
 
 Zend:
 
-  --enable-maintainer-zts Enable thread safety - for code maintainers only!!
-  --disable-inline-optimization
-                          If building zend_execute.lo fails, try this switch
+  --enable-zts            Enable thread safety
   --disable-zend-signals  whether to enable zend signal handling
 
 TSRM:
 
-  --with-tsrm-pth[=pth-config]
-                          Use GNU Pth
-  --with-tsrm-st          Use SGI's State Threads
-  --with-tsrm-pthreads    Use POSIX threads (default)
 
 Libtool:
 
@@ -364,6 +361,9 @@ Some influential environment variables:
               C compiler flags for SYSTEMD, overriding pkg-config
   SYSTEMD_LIBS
               linker flags for SYSTEMD, overriding pkg-config
+  CXX         C++ compiler command
+  CXXFLAGS    C++ compiler flags
+  CXXCPP      C++ preprocessor
   VALGRIND_CFLAGS
               C compiler flags for VALGRIND, overriding pkg-config
   VALGRIND_LIBS
@@ -391,6 +391,10 @@ Some influential environment variables:
   CURL_LIBS   linker flags for CURL, overriding pkg-config
   CURL_FEATURES
               value of supported_features for libcurl, overriding pkg-config
+  ENCHANT2_CFLAGS
+              C compiler flags for ENCHANT2, overriding pkg-config
+  ENCHANT2_LIBS
+              linker flags for ENCHANT2, overriding pkg-config
   ENCHANT_CFLAGS
               C compiler flags for ENCHANT, overriding pkg-config
   ENCHANT_LIBS
@@ -414,9 +418,6 @@ Some influential environment variables:
   GDLIB_LIBS  linker flags for GDLIB, overriding pkg-config
   ICU_CFLAGS  C compiler flags for ICU, overriding pkg-config
   ICU_LIBS    linker flags for ICU, overriding pkg-config
-  CXX         C++ compiler command
-  CXXFLAGS    C++ compiler flags
-  CXXCPP      C++ preprocessor
   SASL_CFLAGS C compiler flags for SASL, overriding pkg-config
   SASL_LIBS   linker flags for SASL, overriding pkg-config
   ONIG_CFLAGS C compiler flags for ONIG, overriding pkg-config
