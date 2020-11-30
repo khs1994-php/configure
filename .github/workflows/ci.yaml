@@ -31,7 +31,7 @@ jobs:
           tar -zxvf php-${PHP_VERSION}.tar.gz -C $PWD
         if: github.event.inputs.PHP_REF != 'master' && github.event_name == 'workflow_dispatch'
       - run: mkdir .git_tmp
-      - run: echo -e "PHP-${PHP_VERSION}\n" > .git_tmp/configure.sh
+      - run: echo -e "PHP-${PHP_VERSION:-master}\n" > .git_tmp/configure.sh
       - run: ./buildconf --force
         if: github.event.inputs.PHP_REF == 'master' || github.event_name != 'workflow_dispatch'
       - run: ./configure --help >> .git_tmp/configure.sh
