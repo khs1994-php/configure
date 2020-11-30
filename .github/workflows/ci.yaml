@@ -12,6 +12,9 @@ on:
 
 name: CI
 
+env:
+  PHP_VERSION: ${{github.event.inputs.PHP_REF}}
+
 jobs:
   Configure:
     name: Configure
@@ -22,15 +25,15 @@ jobs:
           repository: php/php-src
           ref: ${{github.event.inputs.PHP_REF}}
           fetch-depth: 2
-        if: ${{github.event.inputs.PHP_REF}} == 'master'
+        if: github.event.inputs.PHP_REF == 'master' || github.event_name != 'workflow_dispatch'
       - run: |
-          curl -fsSL https://www.php.net/distributions/php-8.0.0.tar.gz
-          tar -zxvf php-8.0.0.tar.gz -C $PWD
-        if: ${{github.event.inputs.PHP_REF}} != 'master'
+          curl -fsSL -O https://www.php.net/distributions/php-${PHP_VERSION}.tar.gz
+          tar -zxvf php-${PHP_VERSION}.tar.gz -C $PWD
+        if: github.event.inputs.PHP_REF != 'master' && github.event_name == 'workflow_dispatch'
       - run: mkdir .git_tmp
-      - run: echo -e "PHP-${{github.event.inputs.PHP_REF}}\n" > .git_tmp/configure.sh
+      - run: echo -e "PHP-${PHP_VERSION}\n" > .git_tmp/configure.sh
       - run: ./buildconf --force
-        if: ${{github.event.inputs.PHP_REF}} == 'master'
+        if: github.event.inputs.PHP_REF == 'master' || github.event_name != 'workflow_dispatch'
       - run: ./configure --help >> .git_tmp/configure.sh
       - name: sync
         if: github.event_name == 'push' || github.event_name == 'schedule'
