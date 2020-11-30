@@ -22,9 +22,15 @@ jobs:
           repository: php/php-src
           ref: ${{github.event.inputs.PHP_REF}}
           fetch-depth: 2
+        if: ${{github.event.inputs.PHP_REF}} == 'master'
+      - run: |
+          curl -fsSL https://www.php.net/distributions/php-8.0.0.tar.gz
+          tar -zxvf php-8.0.0.tar.gz -C $PWD
+        if: ${{github.event.inputs.PHP_REF}} != 'master'
       - run: mkdir .git_tmp
-      - run: echo -e "PHP-master\n" > .git_tmp/configure.sh
+      - run: echo -e "PHP-${{github.event.inputs.PHP_REF}}\n" > .git_tmp/configure.sh
       - run: ./buildconf --force
+        if: ${{github.event.inputs.PHP_REF}} == 'master'
       - run: ./configure --help >> .git_tmp/configure.sh
       - name: sync
         if: github.event_name == 'push' || github.event_name == 'schedule'
