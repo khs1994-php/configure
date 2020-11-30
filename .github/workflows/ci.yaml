@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@master
         with:
           repository: php/php-src
-          ref: {{github.event.inputs.PHP_REF}}
+          ref: ${{github.event.inputs.PHP_REF}}
           fetch-depth: 2
       - run: mkdir .git_tmp
       - run: echo -e "PHP-master\n" > .git_tmp/configure.sh
