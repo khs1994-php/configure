@@ -36,7 +36,7 @@ jobs:
         if: github.event.inputs.PHP_REF == 'master' || github.event_name != 'workflow_dispatch'
       - run: ./configure --help >> .git_tmp/configure.sh
       - name: sync
-        if: github.event_name == 'push' || github.event_name == 'schedule'
+        if: github.event_name == 'push' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         uses: docker://pcit/pages
         env:
           PCIT_EMAIL: khs1994@khs1994.com
