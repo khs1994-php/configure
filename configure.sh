@@ -1,6 +1,6 @@
-PHP-8.0.0
+PHP-master
 
-`configure' configures PHP 8.0.0 to adapt to many kinds of systems.
+`configure' configures PHP 8.1.0-dev to adapt to many kinds of systems.
 
 Usage: ./configure [OPTION]... [VAR=VALUE]...
 
@@ -117,6 +117,7 @@ General settings:
   --enable-debug          Compile with debugging symbols
   --enable-debug-assertions
                           Compile with debug assertions even in release mode
+  --enable-zts            Enable thread safety
   --enable-rtld-now       Use dlopen with RTLD_NOW instead of RTLD_LAZY
   --with-layout=TYPE      Set how installed files will be laid out. Type can
                           be either PHP or GNU [PHP]
@@ -150,7 +151,7 @@ Extensions:
 
   --disable-all           Disable all extensions which are enabled by default
   --without-libxml        Build without LIBXML support
-  --with-openssl          Include OpenSSL support (requires OpenSSL >= 1.0.1)
+  --with-openssl          Include OpenSSL support (requires OpenSSL >= 1.0.2)
   --with-kerberos         OPENSSL: Include Kerberos support
   --with-system-ciphers   OPENSSL: Use system default cipher list instead of
                           hardcoded value
@@ -298,9 +299,7 @@ Extensions:
   --enable-soap           Enable SOAP support
   --enable-sockets        Enable sockets support
   --with-sodium           Include sodium support
-  --with-password-argon2[=DIR]
-                          Include Argon2 support in password_*. DIR is the
-                          Argon2 shared library path
+  --with-password-argon2  Include Argon2 support in password_*
   --enable-sysvmsg        Enable sysvmsg support
   --enable-sysvsem        Enable System V semaphore support
   --enable-sysvshm        Enable the System V shared memory support
@@ -325,7 +324,6 @@ PEAR:
 
 Zend:
 
-  --enable-zts            Enable thread safety
   --disable-zend-signals  whether to enable zend signal handling
 
 TSRM:
@@ -430,6 +428,9 @@ Some influential environment variables:
               C compiler flags for LIBSODIUM, overriding pkg-config
   LIBSODIUM_LIBS
               linker flags for LIBSODIUM, overriding pkg-config
+  ARGON2_CFLAGS
+              C compiler flags for ARGON2, overriding pkg-config
+  ARGON2_LIBS linker flags for ARGON2, overriding pkg-config
   EXPAT_CFLAGS
               C compiler flags for EXPAT, overriding pkg-config
   EXPAT_LIBS  linker flags for EXPAT, overriding pkg-config
