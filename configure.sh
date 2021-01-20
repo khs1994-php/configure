@@ -310,7 +310,7 @@ Extensions:
   --disable-xmlreader     Disable XMLReader support
   --disable-xmlwriter     Disable XMLWriter support
   --with-xsl              Build with XSL support
-  --enable-zend-test      Enable zend-test extension
+  --enable-zend-test      Enable zend_test extension
   --with-zip              Include Zip read/write support
   --enable-mysqlnd        Enable mysqlnd explicitly, will be done implicitly
                           when required by other extensions
