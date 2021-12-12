@@ -1,6 +1,6 @@
-PHP-8.0.0
+PHP-8.1.0
 
-`configure' configures PHP 8.0.0 to adapt to many kinds of systems.
+`configure' configures PHP 8.1.0 to adapt to many kinds of systems.
 
 Usage: ./configure [OPTION]... [VAR=VALUE]...
 
@@ -102,8 +102,6 @@ SAPI modules:
   --enable-fuzzer-msan    Enable msan instead of asan/ubsan when fuzzing
   --enable-litespeed      Build PHP as litespeed module
   --enable-phpdbg         Build phpdbg
-  --enable-phpdbg-webhelper
-                          Build phpdbg web SAPI support
   --enable-phpdbg-debug   Build phpdbg in debug mode
   --enable-phpdbg-readline
                           Enable readline support in phpdbg (depends on static
@@ -117,6 +115,7 @@ General settings:
   --enable-debug          Compile with debugging symbols
   --enable-debug-assertions
                           Compile with debug assertions even in release mode
+  --enable-zts            Enable thread safety
   --enable-rtld-now       Use dlopen with RTLD_NOW instead of RTLD_LAZY
   --with-layout=TYPE      Set how installed files will be laid out. Type can
                           be either PHP or GNU [PHP]
@@ -135,6 +134,10 @@ General settings:
   --enable-werror         Enable -Werror
   --enable-memory-sanitizer
                           Enable memory sanitizer (clang only)
+  --enable-address-sanitizer
+                          Enable address sanitizer
+  --enable-undefined-sanitizer
+                          Enable undefined sanitizer
 
 Extensions:
 
@@ -150,12 +153,12 @@ Extensions:
 
   --disable-all           Disable all extensions which are enabled by default
   --without-libxml        Build without LIBXML support
-  --with-openssl          Include OpenSSL support (requires OpenSSL >= 1.0.1)
+  --with-openssl          Include OpenSSL support (requires OpenSSL >= 1.0.2)
   --with-kerberos         OPENSSL: Include Kerberos support
   --with-system-ciphers   OPENSSL: Use system default cipher list instead of
                           hardcoded value
   --with-external-pcre    Use external library for PCRE support
-  --with-pcre-jit         Enable PCRE JIT functionality
+  --without-pcre-jit      Disable PCRE JIT functionality
   --without-sqlite3       Do not include SQLite3 support.
   --with-zlib             Include ZLIB support (requires zlib >= 1.2.0.4)
   --enable-bcmath         Enable bc style precision math functions
@@ -189,6 +192,7 @@ Extensions:
                           ext/openssl
   --enable-gd             Include GD support
   --with-external-gd      Use external libgd
+  --with-avif             GD: Enable AVIF support (only for bundled libgd)
   --with-webp             GD: Enable WEBP support (only for bundled libgd)
   --with-jpeg             GD: Enable JPEG support (only for bundled libgd)
   --with-xpm              GD: Enable XPM support (only for bundled libgd)
@@ -298,9 +302,9 @@ Extensions:
   --enable-soap           Enable SOAP support
   --enable-sockets        Enable sockets support
   --with-sodium           Include sodium support
-  --with-password-argon2[=DIR]
-                          Include Argon2 support in password_*. DIR is the
-                          Argon2 shared library path
+  --with-external-libcrypt
+                          Use external libcrypt or libxcrypt
+  --with-password-argon2  Include Argon2 support in password_*
   --enable-sysvmsg        Enable sysvmsg support
   --enable-sysvsem        Enable System V semaphore support
   --enable-sysvshm        Enable the System V shared memory support
@@ -311,7 +315,7 @@ Extensions:
   --disable-xmlreader     Disable XMLReader support
   --disable-xmlwriter     Disable XMLWriter support
   --with-xsl              Build with XSL support
-  --enable-zend-test      Enable zend-test extension
+  --enable-zend-test      Enable zend_test extension
   --with-zip              Include Zip read/write support
   --enable-mysqlnd        Enable mysqlnd explicitly, will be done implicitly
                           when required by other extensions
@@ -322,10 +326,10 @@ Extensions:
 PEAR:
 
   --with-pear[=DIR]       Install PEAR in DIR [PREFIX/lib/php]
+  --disable-fiber-asm     Disable the use of boost fiber assembly files
 
 Zend:
 
-  --enable-zts            Enable thread safety
   --disable-zend-signals  whether to enable zend signal handling
 
 TSRM:
@@ -403,6 +407,8 @@ Some influential environment variables:
   FFI_LIBS    linker flags for FFI, overriding pkg-config
   PNG_CFLAGS  C compiler flags for PNG, overriding pkg-config
   PNG_LIBS    linker flags for PNG, overriding pkg-config
+  AVIF_CFLAGS C compiler flags for AVIF, overriding pkg-config
+  AVIF_LIBS   linker flags for AVIF, overriding pkg-config
   WEBP_CFLAGS C compiler flags for WEBP, overriding pkg-config
   WEBP_LIBS   linker flags for WEBP, overriding pkg-config
   JPEG_CFLAGS C compiler flags for JPEG, overriding pkg-config
@@ -424,12 +430,19 @@ Some influential environment variables:
   ONIG_LIBS   linker flags for ONIG, overriding pkg-config
   ODBC_CFLAGS C compiler flags for ODBC, overriding pkg-config
   ODBC_LIBS   linker flags for ODBC, overriding pkg-config
+  CAPSTONE_CFLAGS
+              C compiler flags for CAPSTONE, overriding pkg-config
+  CAPSTONE_LIBS
+              linker flags for CAPSTONE, overriding pkg-config
   EDIT_CFLAGS C compiler flags for EDIT, overriding pkg-config
   EDIT_LIBS   linker flags for EDIT, overriding pkg-config
   LIBSODIUM_CFLAGS
               C compiler flags for LIBSODIUM, overriding pkg-config
   LIBSODIUM_LIBS
               linker flags for LIBSODIUM, overriding pkg-config
+  ARGON2_CFLAGS
+              C compiler flags for ARGON2, overriding pkg-config
+  ARGON2_LIBS linker flags for ARGON2, overriding pkg-config
   EXPAT_CFLAGS
               C compiler flags for EXPAT, overriding pkg-config
   EXPAT_LIBS  linker flags for EXPAT, overriding pkg-config
