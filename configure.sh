@@ -1,14 +1,10 @@
-PHP-8.1.0
+PHP-8.2.0
 
-`configure' configures PHP 8.1.0 to adapt to many kinds of systems.
-
+`configure' configures PHP 8.2.0 to adapt to many kinds of systems.
 Usage: ./configure [OPTION]... [VAR=VALUE]...
-
 To assign environment variables (e.g., CC, CFLAGS...), specify them as
 VAR=VALUE.  See below for descriptions of some of the useful variables.
-
 Defaults for the options are specified in brackets.
-
 Configuration:
   -h, --help              display this help and exit
       --help=short        display options specific to this package
@@ -30,9 +26,7 @@ By default, `make install' will install all the files in
 `/usr/local/bin', `/usr/local/lib' etc.  You can specify
 an installation prefix other than `/usr/local' using `--prefix',
 for instance `--prefix=$HOME'.
-
 For better control, use the options below.
-
 Fine tuning of the installation directories:
   --bindir=DIR            user executables [EPREFIX/bin]
   --sbindir=DIR           system admin executables [EPREFIX/sbin]
@@ -54,17 +48,14 @@ Fine tuning of the installation directories:
   --dvidir=DIR            dvi documentation [DOCDIR]
   --pdfdir=DIR            pdf documentation [DOCDIR]
   --psdir=DIR             ps documentation [DOCDIR]
-
 Program names:
   --program-prefix=PREFIX            prepend PREFIX to installed program names
   --program-suffix=SUFFIX            append SUFFIX to installed program names
   --program-transform-name=PROGRAM   run sed PROGRAM on installed program names
-
 System types:
   --build=BUILD     configure for building on BUILD [guessed]
   --host=HOST       cross-compile to build programs to run on HOST [BUILD]
   --target=TARGET   configure for building compilers for TARGET [HOST]
-
 Optional Features and Packages:
   --disable-option-checking  ignore unrecognized --enable/--with options
   --disable-FEATURE       do not include FEATURE (same as --enable-FEATURE=no)
@@ -78,9 +69,7 @@ Optional Features and Packages:
                           extension
   --disable-gcc-global-regs
                           whether to enable GCC global register variables
-
 SAPI modules:
-
   --with-apxs2[=FILE]     Build shared Apache 2 handler module. FILE is the
                           optional pathname to the Apache apxs tool [apxs]
   --disable-cli           Disable building CLI version of PHP (this forces
@@ -97,9 +86,9 @@ SAPI modules:
   --with-fpm-systemd      Activate systemd integration
   --with-fpm-acl          Use POSIX Access Control Lists
   --with-fpm-apparmor     Support AppArmor confinement through libapparmor
+  --with-fpm-selinux      Support SELinux policy library
   --enable-fuzzer         Build PHP as clang fuzzing test module (for
                           developers)
-  --enable-fuzzer-msan    Enable msan instead of asan/ubsan when fuzzing
   --enable-litespeed      Build PHP as litespeed module
   --enable-phpdbg         Build phpdbg
   --enable-phpdbg-debug   Build phpdbg in debug mode
@@ -108,9 +97,7 @@ SAPI modules:
                           ext/readline)
   --disable-cgi           Disable building CGI version of PHP
   --with-valgrind         Enable valgrind support
-
 General settings:
-
   --enable-gcov           Enable GCOV code coverage - FOR DEVELOPERS ONLY!!
   --enable-debug          Compile with debugging symbols
   --enable-debug-assertions
@@ -138,19 +125,12 @@ General settings:
                           Enable address sanitizer
   --enable-undefined-sanitizer
                           Enable undefined sanitizer
-
 Extensions:
-
   --with-EXTENSION=shared[,PATH]
-
     NOTE: Not all extensions can be build as 'shared'.
-
     Example: --with-foobar=shared,/usr/local/foobar/
-
       o Builds the foobar extension as shared extension.
       o foobar package install prefix is /usr/local/foobar/
-
-
   --disable-all           Disable all extensions which are enabled by default
   --without-libxml        Build without LIBXML support
   --with-openssl          Include OpenSSL support (requires OpenSSL >= 1.0.2)
@@ -181,6 +161,7 @@ Extensions:
   --without-cdb[=DIR]     DBA: CDB support (bundled)
   --disable-inifile       DBA: INI support (bundled)
   --disable-flatfile      DBA: FlatFile support (bundled)
+  --enable-dl-test        Enable dl_test extension
   --disable-dom           Disable DOM support
   --with-enchant          Include Enchant support
   --enable-exif           Enable EXIF (metadata from images) support
@@ -213,9 +194,8 @@ Extensions:
   --with-ldap-sasl        LDAP: Build with Cyrus SASL support
   --enable-mbstring       Enable multibyte string support
   --disable-mbregex       MBSTRING: Disable multibyte regex support
-  --with-mysqli[=FILE]    Include MySQLi support. FILE is the path to
-                          mysql_config. If no value or mysqlnd is passed as
-                          FILE, the MySQL native driver will be used
+  --with-mysqli           Include MySQLi support. The MySQL native driver will
+                          be used
   --with-mysql-sock[=SOCKPATH]
                           MySQLi/PDO_MYSQL: Location of the MySQL unix socket
                           pointer. If unspecified, the default locations are
@@ -322,21 +302,13 @@ Extensions:
   --disable-mysqlnd-compression-support
                           Disable support for the MySQL compressed protocol in
                           mysqlnd
-
 PEAR:
-
   --with-pear[=DIR]       Install PEAR in DIR [PREFIX/lib/php]
   --disable-fiber-asm     Disable the use of boost fiber assembly files
-
 Zend:
-
   --disable-zend-signals  whether to enable zend signal handling
-
 TSRM:
-
-
 Libtool:
-
   --enable-shared=PKGS    Build shared libraries default=yes
   --enable-static=PKGS    Build static libraries default=yes
   --enable-fast-install=PKGS
@@ -345,8 +317,6 @@ Libtool:
   --disable-libtool-lock  Avoid locking (might break parallel builds)
   --with-pic              Try to use only PIC/non-PIC objects default=use both
   --with-tags=TAGS        Include additional configurations automatic
-
-
 Some influential environment variables:
   PKG_CONFIG  path to pkg-config utility
   PKG_CONFIG_PATH
@@ -454,9 +424,7 @@ Some influential environment variables:
   LIBZIP_CFLAGS
               C compiler flags for LIBZIP, overriding pkg-config
   LIBZIP_LIBS linker flags for LIBZIP, overriding pkg-config
-
 Use these variables to override the choices made by `configure' or to help
 it to find libraries and programs with nonstandard names/locations.
-
-Report bugs to <https://bugs.php.net>.
+Report bugs to <https://github.com/php/php-src/issues>.
 PHP home page: <https://www.php.net>.
