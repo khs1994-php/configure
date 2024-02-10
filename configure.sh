@@ -1,10 +1,14 @@
-PHP-8.2.0
+PHP-8.3.0
 
-`configure' configures PHP 8.2.0 to adapt to many kinds of systems.
+`configure' configures PHP 8.3.0 to adapt to many kinds of systems.
+
 Usage: ./configure [OPTION]... [VAR=VALUE]...
+
 To assign environment variables (e.g., CC, CFLAGS...), specify them as
 VAR=VALUE.  See below for descriptions of some of the useful variables.
+
 Defaults for the options are specified in brackets.
+
 Configuration:
   -h, --help              display this help and exit
       --help=short        display options specific to this package
@@ -26,7 +30,9 @@ By default, `make install' will install all the files in
 `/usr/local/bin', `/usr/local/lib' etc.  You can specify
 an installation prefix other than `/usr/local' using `--prefix',
 for instance `--prefix=$HOME'.
+
 For better control, use the options below.
+
 Fine tuning of the installation directories:
   --bindir=DIR            user executables [EPREFIX/bin]
   --sbindir=DIR           system admin executables [EPREFIX/sbin]
@@ -48,14 +54,17 @@ Fine tuning of the installation directories:
   --dvidir=DIR            dvi documentation [DOCDIR]
   --pdfdir=DIR            pdf documentation [DOCDIR]
   --psdir=DIR             ps documentation [DOCDIR]
+
 Program names:
   --program-prefix=PREFIX            prepend PREFIX to installed program names
   --program-suffix=SUFFIX            append SUFFIX to installed program names
   --program-transform-name=PROGRAM   run sed PROGRAM on installed program names
+
 System types:
   --build=BUILD     configure for building on BUILD [guessed]
   --host=HOST       cross-compile to build programs to run on HOST [BUILD]
   --target=TARGET   configure for building compilers for TARGET [HOST]
+
 Optional Features and Packages:
   --disable-option-checking  ignore unrecognized --enable/--with options
   --disable-FEATURE       do not include FEATURE (same as --enable-FEATURE=no)
@@ -69,7 +78,9 @@ Optional Features and Packages:
                           extension
   --disable-gcc-global-regs
                           whether to enable GCC global register variables
+
 SAPI modules:
+
   --with-apxs2[=FILE]     Build shared Apache 2 handler module. FILE is the
                           optional pathname to the Apache apxs tool [apxs]
   --disable-cli           Disable building CLI version of PHP (this forces
@@ -90,14 +101,16 @@ SAPI modules:
   --enable-fuzzer         Build PHP as clang fuzzing test module (for
                           developers)
   --enable-litespeed      Build PHP as litespeed module
-  --enable-phpdbg         Build phpdbg
+  --disable-phpdbg        Disable building of phpdbg
   --enable-phpdbg-debug   Build phpdbg in debug mode
   --enable-phpdbg-readline
                           Enable readline support in phpdbg (depends on static
                           ext/readline)
   --disable-cgi           Disable building CGI version of PHP
   --with-valgrind         Enable valgrind support
+
 General settings:
+
   --enable-gcov           Enable GCOV code coverage - FOR DEVELOPERS ONLY!!
   --enable-debug          Compile with debugging symbols
   --enable-debug-assertions
@@ -125,12 +138,19 @@ General settings:
                           Enable address sanitizer
   --enable-undefined-sanitizer
                           Enable undefined sanitizer
+
 Extensions:
+
   --with-EXTENSION=shared[,PATH]
-    NOTE: Not all extensions can be build as 'shared'.
+
+    NOTE: Not all extensions can be built as 'shared'.
+
     Example: --with-foobar=shared,/usr/local/foobar/
+
       o Builds the foobar extension as shared extension.
       o foobar package install prefix is /usr/local/foobar/
+
+
   --disable-all           Disable all extensions which are enabled by default
   --without-libxml        Build without LIBXML support
   --with-openssl          Include OpenSSL support (requires OpenSSL >= 1.0.2)
@@ -235,6 +255,7 @@ Extensions:
   --disable-huge-code-pages
                           Disable copying PHP CODE pages into HUGE PAGES
   --disable-opcache-jit   Disable JIT
+  --with-capstone         support opcache JIT disassembly through capstone
   --enable-pcntl          Enable pcntl support (CLI/CGI only)
   --disable-pdo           Disable PHP Data Objects support
   --with-pdo-dblib[=DIR]  PDO: DBLIB-DB support. DIR is the FreeTDS home
@@ -302,13 +323,20 @@ Extensions:
   --disable-mysqlnd-compression-support
                           Disable support for the MySQL compressed protocol in
                           mysqlnd
+
 PEAR:
+
   --with-pear[=DIR]       Install PEAR in DIR [PREFIX/lib/php]
-  --disable-fiber-asm     Disable the use of boost fiber assembly files
+
 Zend:
+
+  --disable-fiber-asm     Disable the use of boost fiber assembly files
   --disable-zend-signals  whether to enable zend signal handling
-TSRM:
+  --enable-zend-max-execution-timers
+                          whether to enable zend max execution timers
+
 Libtool:
+
   --enable-shared=PKGS    Build shared libraries default=yes
   --enable-static=PKGS    Build static libraries default=yes
   --enable-fast-install=PKGS
@@ -317,7 +345,11 @@ Libtool:
   --disable-libtool-lock  Avoid locking (might break parallel builds)
   --with-pic              Try to use only PIC/non-PIC objects default=use both
   --with-tags=TAGS        Include additional configurations automatic
+
+
 Some influential environment variables:
+  PHP_EXTRA_VERSION
+              Extra PHP version label suffix, e.g. '-dev', 'rc1', '-acme'
   PKG_CONFIG  path to pkg-config utility
   PKG_CONFIG_PATH
               directories to add to pkg-config's search path
@@ -424,7 +456,9 @@ Some influential environment variables:
   LIBZIP_CFLAGS
               C compiler flags for LIBZIP, overriding pkg-config
   LIBZIP_LIBS linker flags for LIBZIP, overriding pkg-config
+
 Use these variables to override the choices made by `configure' or to help
 it to find libraries and programs with nonstandard names/locations.
+
 Report bugs to <https://github.com/php/php-src/issues>.
 PHP home page: <https://www.php.net>.
