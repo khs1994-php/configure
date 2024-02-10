@@ -1,6 +1,6 @@
-PHP-8.3.0
+PHP-master
 
-`configure' configures PHP 8.3.0 to adapt to many kinds of systems.
+`configure' configures PHP 8.4.0-dev to adapt to many kinds of systems.
 
 Usage: ./configure [OPTION]... [VAR=VALUE]...
 
@@ -205,10 +205,6 @@ Extensions:
   --with-gmp[=DIR]        Include GNU MP support
   --with-mhash            Include mhash support
   --without-iconv[=DIR]   Exclude iconv support
-  --with-imap[=DIR]       Include IMAP support. DIR is the c-client install
-                          prefix
-  --with-kerberos         IMAP: Include Kerberos support
-  --with-imap-ssl         IMAP: Include SSL support
   --enable-intl           Enable internationalization support
   --with-ldap[=DIR]       Include LDAP support
   --with-ldap-sasl        LDAP: Build with Cyrus SASL support
@@ -220,10 +216,6 @@ Extensions:
                           MySQLi/PDO_MYSQL: Location of the MySQL unix socket
                           pointer. If unspecified, the default locations are
                           searched
-  --with-oci8[=DIR]       Include Oracle Database OCI8 support. DIR defaults
-                          to $ORACLE_HOME. Use
-                          --with-oci8=instantclient,/path/to/instant/client/lib
-                          to use an Oracle Instant Client installation
   --with-odbcver[=HEX]    Force support for the passed ODBC version. A hex
                           number is expected, default 0x0350. Use the special
                           value of 0 to prevent an explicit ODBCVER to be
@@ -266,11 +258,6 @@ Extensions:
   --with-pdo-mysql[=DIR]  PDO: MySQL support. DIR is the MySQL base directory.
                           If no value or mysqlnd is passed as DIR, the MySQL
                           native driver will be used
-  --with-zlib-dir[=DIR]   PDO_MySQL: Set the path to libz install prefix
-  --with-pdo-oci[=DIR]    PDO: Oracle OCI support. DIR defaults to
-                          $ORACLE_HOME. Use
-                          --with-pdo-oci=instantclient,/path/to/instant/client/lib
-                          for an Oracle Instant Client installation.
   --with-pdo-odbc=flavour,dir
                           PDO: Support for 'flavour' ODBC driver. The include
                           and lib dirs are looked for under 'dir'. The
@@ -291,8 +278,6 @@ Extensions:
                           base install directory or the path to pg_config
   --disable-phar          Disable phar support
   --disable-posix         Disable POSIX-like functions
-  --with-pspell[=DIR]     Include PSPELL support. GNU Aspell version 0.50.0 or
-                          higher required
   --with-libedit          Include libedit readline replacement (CLI/CGI only)
   --with-readline[=DIR]   Include readline support (CLI/CGI only)
   --disable-session       Disable session support
