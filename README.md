@@ -1,6 +1,6 @@
 # PHP Configure Compare
 
-* [php/php-src master vs PHP 8.2.0](https://github.com/khs1994-php/configure/compare/8.3.0...pre)
+* [php/php-src master vs PHP 8.3.0](https://github.com/khs1994-php/configure/compare/8.3.0...pre)
 
 * [PHP 8.3.0 vs PHP 8.2.0](https://github.com/khs1994-php/configure/compare/8.2.0...8.3.0)
 
