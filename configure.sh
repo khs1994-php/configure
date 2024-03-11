@@ -352,6 +352,14 @@ Some influential environment variables:
               C compiler flags for SYSTEMD, overriding pkg-config
   SYSTEMD_LIBS
               linker flags for SYSTEMD, overriding pkg-config
+  APPARMOR_CFLAGS
+              C compiler flags for APPARMOR, overriding pkg-config
+  APPARMOR_LIBS
+              linker flags for APPARMOR, overriding pkg-config
+  SELINUX_CFLAGS
+              C compiler flags for SELINUX, overriding pkg-config
+  SELINUX_LIBS
+              linker flags for SELINUX, overriding pkg-config
   CXX         C++ compiler command
   CXXFLAGS    C++ compiler flags
   CXXCPP      C++ preprocessor
