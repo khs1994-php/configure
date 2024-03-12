@@ -85,9 +85,8 @@ SAPI modules:
                           optional pathname to the Apache apxs tool [apxs]
   --disable-cli           Disable building CLI version of PHP (this forces
                           --without-pear)
-  --enable-embed[=TYPE]   EXPERIMENTAL: Enable building of embedded SAPI
-                          library TYPE is either 'shared' or 'static'.
-                          [TYPE=shared]
+  --enable-embed[=TYPE]   Enable building of embedded SAPI library TYPE is
+                          either 'shared' or 'static'. [TYPE=shared]
   --enable-fpm            Enable building of the fpm SAPI executable
   --with-fpm-user[=USER]  Set the user for php-fpm to run as. (default:
                           nobody)
