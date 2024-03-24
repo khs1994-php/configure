@@ -152,8 +152,7 @@ Extensions:
 
   --disable-all           Disable all extensions which are enabled by default
   --without-libxml        Build without LIBXML support
-  --with-openssl          Include OpenSSL support (requires OpenSSL >= 1.0.2)
-  --with-kerberos         OPENSSL: Include Kerberos support
+  --with-openssl          Include OpenSSL support (requires OpenSSL >= 1.1.1)
   --with-system-ciphers   OPENSSL: Use system default cipher list instead of
                           hardcoded value
   --with-external-pcre    Use external library for PCRE support
@@ -369,10 +368,6 @@ Some influential environment variables:
   LIBXML_CFLAGS
               C compiler flags for LIBXML, overriding pkg-config
   LIBXML_LIBS linker flags for LIBXML, overriding pkg-config
-  KERBEROS_CFLAGS
-              C compiler flags for KERBEROS, overriding pkg-config
-  KERBEROS_LIBS
-              linker flags for KERBEROS, overriding pkg-config
   OPENSSL_CFLAGS
               C compiler flags for OPENSSL, overriding pkg-config
   OPENSSL_LIBS
