@@ -1,6 +1,6 @@
-PHP-8.4.0
+PHP-master
 
-'configure' configures PHP 8.4.0 to adapt to many kinds of systems.
+`configure' configures PHP 8.5.0-dev to adapt to many kinds of systems.
 
 Usage: ./configure [OPTION]... [VAR=VALUE]...
 
@@ -14,11 +14,11 @@ Configuration:
       --help=short        display options specific to this package
       --help=recursive    display the short help of all the included packages
   -V, --version           display version information and exit
-  -q, --quiet, --silent   do not print 'checking ...' messages
+  -q, --quiet, --silent   do not print `checking ...' messages
       --cache-file=FILE   cache test results in FILE [disabled]
-  -C, --config-cache      alias for '--cache-file=config.cache'
+  -C, --config-cache      alias for `--cache-file=config.cache'
   -n, --no-create         do not create output files
-      --srcdir=DIR        find the sources in DIR [configure dir or '..']
+      --srcdir=DIR        find the sources in DIR [configure dir or `..']
 
 Installation directories:
   --prefix=PREFIX         install architecture-independent files in PREFIX
@@ -26,10 +26,10 @@ Installation directories:
   --exec-prefix=EPREFIX   install architecture-dependent files in EPREFIX
                           [PREFIX]
 
-By default, 'make install' will install all the files in
-'/usr/local/bin', '/usr/local/lib' etc.  You can specify
-an installation prefix other than '/usr/local' using '--prefix',
-for instance '--prefix=$HOME'.
+By default, `make install' will install all the files in
+`/usr/local/bin', `/usr/local/lib' etc.  You can specify
+an installation prefix other than `/usr/local' using `--prefix',
+for instance `--prefix=$HOME'.
 
 For better control, use the options below.
 
@@ -106,6 +106,8 @@ SAPI modules:
                           Enable readline support in phpdbg (depends on static
                           ext/readline)
   --disable-cgi           Disable building CGI version of PHP
+  --enable-system-glob    Use the system glob function instead of the PHP
+                          provided replacement.
   --with-valgrind         Enable Valgrind support
 
 General settings:
@@ -251,7 +253,6 @@ Extensions:
                           alternatively the optional DIR argument to customize
                           where to look for the unixODBC library.
   --with-dbmaker[=DIR]    Include DBMaker support
-  --disable-opcache       Disable Zend OPcache support
   --disable-huge-code-pages
                           Disable copying PHP CODE pages into HUGE PAGES
   --disable-opcache-jit   Disable JIT
@@ -444,6 +445,8 @@ Some influential environment variables:
   GMP_LIBS    linker flags for GMP, overriding pkg-config
   ICU_CFLAGS  C compiler flags for ICU, overriding pkg-config
   ICU_LIBS    linker flags for ICU, overriding pkg-config
+  LDAP_CFLAGS C compiler flags for LDAP, overriding pkg-config
+  LDAP_LIBS   linker flags for LDAP, overriding pkg-config
   SASL_CFLAGS C compiler flags for SASL, overriding pkg-config
   SASL_LIBS   linker flags for SASL, overriding pkg-config
   ONIG_CFLAGS C compiler flags for ONIG, overriding pkg-config
@@ -498,7 +501,7 @@ Some influential environment variables:
   PHP_BUILD_ARCH
               The build architecture
 
-Use these variables to override the choices made by 'configure' or to help
+Use these variables to override the choices made by `configure' or to help
 it to find libraries and programs with nonstandard names/locations.
 
 Report bugs to <https://github.com/php/php-src/issues>.
