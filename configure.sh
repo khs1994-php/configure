@@ -223,10 +223,6 @@ Extensions:
                           MySQLi/PDO_MYSQL: Location of the MySQL Unix socket
                           pointer. If unspecified, the default locations are
                           searched
-  --with-odbcver[=HEX]    Force support for the passed ODBC version. A hex
-                          number is expected, default 0x0350. Use the special
-                          value of 0 to prevent an explicit ODBCVER to be
-                          defined.
   --with-adabas[=DIR]     Include Adabas D support [/usr/local]
   --with-sapdb[=DIR]      Include SAP DB support [/usr/local]
   --with-solid[=DIR]      Include Solid support [/usr/local/solid]
