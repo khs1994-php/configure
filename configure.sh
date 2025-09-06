@@ -312,6 +312,8 @@ Extensions:
   --enable-sysvshm        Enable the System V shared memory support
   --with-tidy[=DIR]       Include TIDY support
   --disable-tokenizer     Disable tokenizer support
+  --with-external-uriparser
+                          Use external/system liburiparser
   --disable-xml           Disable XML support
   --with-expat            XML: use Expat library instead of libxml2 in the xml
                           extension
@@ -471,6 +473,10 @@ Some influential environment variables:
   ARGON2_CFLAGS
               C compiler flags for ARGON2, overriding pkg-config
   ARGON2_LIBS linker flags for ARGON2, overriding pkg-config
+  LIBURIPARSER_CFLAGS
+              C compiler flags for LIBURIPARSER, overriding pkg-config
+  LIBURIPARSER_LIBS
+              linker flags for LIBURIPARSER, overriding pkg-config
   EXPAT_CFLAGS
               C compiler flags for EXPAT, overriding pkg-config
   EXPAT_LIBS  linker flags for EXPAT, overriding pkg-config
