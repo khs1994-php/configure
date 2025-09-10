@@ -223,15 +223,7 @@ Extensions:
                           MySQLi/PDO_MYSQL: Location of the MySQL Unix socket
                           pointer. If unspecified, the default locations are
                           searched
-  --with-adabas[=DIR]     Include Adabas D support [/usr/local]
-  --with-sapdb[=DIR]      Include SAP DB support [/usr/local]
-  --with-solid[=DIR]      Include Solid support [/usr/local/solid]
   --with-ibm-db2[=DIR]    Include IBM DB2 support [/home/db2inst1/sqllib]
-  --with-empress[=DIR]    Include Empress support $EMPRESSPATH (Empress
-                          Version >= 8.60 required)
-  --with-empress-bcs[=DIR]
-                          Include Empress Local Access support $EMPRESSPATH
-                          (Empress Version >= 8.60 required)
   --with-custom-odbc[=DIR]
                           Include user defined ODBC support. DIR is ODBC
                           install base directory [/usr/local]. Make sure to
@@ -242,13 +234,10 @@ Extensions:
                           CPPFLAGS="-DODBC_QNX -DSQLANY_BUG" LDFLAGS=-lunix
                           CUSTOM_ODBC_LIBS="-ldblib -lodbc"
   --with-iodbc            Include iODBC support
-  --with-esoob[=DIR]      Include Easysoft OOB support
-                          [/usr/local/easysoft/oob/client]
   --with-unixODBC[=DIR]   Include unixODBC support. Use PKG_CONFIG_PATH (or
                           ODBC_CFLAGS and ODBC_LIBS) environment variables, or
                           alternatively the optional DIR argument to customize
                           where to look for the unixODBC library.
-  --with-dbmaker[=DIR]    Include DBMaker support
   --disable-huge-code-pages
                           Disable copying PHP CODE pages into HUGE PAGES
   --disable-opcache-jit   Disable JIT
