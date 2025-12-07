@@ -1,6 +1,7 @@
-PHP-8.4.0
 
-'configure' configures PHP 8.4.0 to adapt to many kinds of systems.
+PHP-8.5.0
+
+`configure' configures PHP 8.5.0 to adapt to many kinds of systems.
 
 Usage: ./configure [OPTION]... [VAR=VALUE]...
 
@@ -14,11 +15,11 @@ Configuration:
       --help=short        display options specific to this package
       --help=recursive    display the short help of all the included packages
   -V, --version           display version information and exit
-  -q, --quiet, --silent   do not print 'checking ...' messages
+  -q, --quiet, --silent   do not print `checking ...' messages
       --cache-file=FILE   cache test results in FILE [disabled]
-  -C, --config-cache      alias for '--cache-file=config.cache'
+  -C, --config-cache      alias for `--cache-file=config.cache'
   -n, --no-create         do not create output files
-      --srcdir=DIR        find the sources in DIR [configure dir or '..']
+      --srcdir=DIR        find the sources in DIR [configure dir or `..']
 
 Installation directories:
   --prefix=PREFIX         install architecture-independent files in PREFIX
@@ -26,10 +27,10 @@ Installation directories:
   --exec-prefix=EPREFIX   install architecture-dependent files in EPREFIX
                           [PREFIX]
 
-By default, 'make install' will install all the files in
-'/usr/local/bin', '/usr/local/lib' etc.  You can specify
-an installation prefix other than '/usr/local' using '--prefix',
-for instance '--prefix=$HOME'.
+By default, `make install' will install all the files in
+`/usr/local/bin', `/usr/local/lib' etc.  You can specify
+an installation prefix other than `/usr/local' using `--prefix',
+for instance `--prefix=$HOME'.
 
 For better control, use the options below.
 
@@ -106,6 +107,8 @@ SAPI modules:
                           Enable readline support in phpdbg (depends on static
                           ext/readline)
   --disable-cgi           Disable building CGI version of PHP
+  --enable-system-glob    Use the system glob function instead of the PHP
+                          provided replacement.
   --with-valgrind         Enable Valgrind support
 
 General settings:
@@ -221,19 +224,7 @@ Extensions:
                           MySQLi/PDO_MYSQL: Location of the MySQL Unix socket
                           pointer. If unspecified, the default locations are
                           searched
-  --with-odbcver[=HEX]    Force support for the passed ODBC version. A hex
-                          number is expected, default 0x0350. Use the special
-                          value of 0 to prevent an explicit ODBCVER to be
-                          defined.
-  --with-adabas[=DIR]     Include Adabas D support [/usr/local]
-  --with-sapdb[=DIR]      Include SAP DB support [/usr/local]
-  --with-solid[=DIR]      Include Solid support [/usr/local/solid]
   --with-ibm-db2[=DIR]    Include IBM DB2 support [/home/db2inst1/sqllib]
-  --with-empress[=DIR]    Include Empress support $EMPRESSPATH (Empress
-                          Version >= 8.60 required)
-  --with-empress-bcs[=DIR]
-                          Include Empress Local Access support $EMPRESSPATH
-                          (Empress Version >= 8.60 required)
   --with-custom-odbc[=DIR]
                           Include user defined ODBC support. DIR is ODBC
                           install base directory [/usr/local]. Make sure to
@@ -244,14 +235,10 @@ Extensions:
                           CPPFLAGS="-DODBC_QNX -DSQLANY_BUG" LDFLAGS=-lunix
                           CUSTOM_ODBC_LIBS="-ldblib -lodbc"
   --with-iodbc            Include iODBC support
-  --with-esoob[=DIR]      Include Easysoft OOB support
-                          [/usr/local/easysoft/oob/client]
   --with-unixODBC[=DIR]   Include unixODBC support. Use PKG_CONFIG_PATH (or
                           ODBC_CFLAGS and ODBC_LIBS) environment variables, or
                           alternatively the optional DIR argument to customize
                           where to look for the unixODBC library.
-  --with-dbmaker[=DIR]    Include DBMaker support
-  --disable-opcache       Disable Zend OPcache support
   --disable-huge-code-pages
                           Disable copying PHP CODE pages into HUGE PAGES
   --disable-opcache-jit   Disable JIT
@@ -315,6 +302,8 @@ Extensions:
   --enable-sysvshm        Enable the System V shared memory support
   --with-tidy[=DIR]       Include TIDY support
   --disable-tokenizer     Disable tokenizer support
+  --with-external-uriparser
+                          Use external/system liburiparser
   --disable-xml           Disable XML support
   --with-expat            XML: use Expat library instead of libxml2 in the xml
                           extension
@@ -444,6 +433,8 @@ Some influential environment variables:
   GMP_LIBS    linker flags for GMP, overriding pkg-config
   ICU_CFLAGS  C compiler flags for ICU, overriding pkg-config
   ICU_LIBS    linker flags for ICU, overriding pkg-config
+  LDAP_CFLAGS C compiler flags for LDAP, overriding pkg-config
+  LDAP_LIBS   linker flags for LDAP, overriding pkg-config
   SASL_CFLAGS C compiler flags for SASL, overriding pkg-config
   SASL_LIBS   linker flags for SASL, overriding pkg-config
   ONIG_CFLAGS C compiler flags for ONIG, overriding pkg-config
@@ -472,6 +463,10 @@ Some influential environment variables:
   ARGON2_CFLAGS
               C compiler flags for ARGON2, overriding pkg-config
   ARGON2_LIBS linker flags for ARGON2, overriding pkg-config
+  LIBURIPARSER_CFLAGS
+              C compiler flags for LIBURIPARSER, overriding pkg-config
+  LIBURIPARSER_LIBS
+              linker flags for LIBURIPARSER, overriding pkg-config
   EXPAT_CFLAGS
               C compiler flags for EXPAT, overriding pkg-config
   EXPAT_LIBS  linker flags for EXPAT, overriding pkg-config
@@ -498,7 +493,7 @@ Some influential environment variables:
   PHP_BUILD_ARCH
               The build architecture
 
-Use these variables to override the choices made by 'configure' or to help
+Use these variables to override the choices made by `configure' or to help
 it to find libraries and programs with nonstandard names/locations.
 
 Report bugs to <https://github.com/php/php-src/issues>.
