@@ -1,6 +1,6 @@
-PHP-8.5.0
+PHP-master
 
-`configure' configures PHP 8.5.0 to adapt to many kinds of systems.
+`configure' configures PHP 8.6.0-dev to adapt to many kinds of systems.
 
 Usage: ./configure [OPTION]... [VAR=VALUE]...
 
